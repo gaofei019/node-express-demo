@@ -1,2 +1,2 @@
 # node-express-demo
-node+express网站实例
+node+express+mysql网站实例
