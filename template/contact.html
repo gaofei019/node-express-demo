@@ -1,0 +1,84 @@
+<%include header.html%>
+<div class="main_btm"><!-- start main_btm -->
+	<div class="container">
+		<div class="main row">
+			    <div class="col-md-4 company_ad">
+				    <h2>find Address :</h2>
+      				<address>
+						 <p>500 Lorem Ipsum Dolor Sit,</p>
+						 <p>22-56-2-9 Sit Amet, Lorem,</p>
+						 <p>USA</p>
+				   		<p>Phone:(00) 222 666 444</p>
+				   		<p>Fax: (000) 000 00 00 0</p>
+				 	 	<p>Email: <a href="mailto:info@mycompany.com">info(at)mycompany.com</a></p>
+				   		<p>Follow on: <a href="#">Facebook</a>, <a href="#">Twitter</a></p>
+				   	</address>
+				</div>
+				<div class="col-md-8">
+				  <div class="contact-form">
+				  	<h2>Contact Us</h2>
+                        <div>
+                            <span>name</span>
+                            <span><input type="username" class="form-control" id="userName"></span>
+                        </div>
+                        <div>
+                            <span>e-mail</span>
+                            <span><input type="email" class="form-control" id="email"></span>
+                        </div>
+                        <div>
+                            <span>subject</span>
+                            <span><textarea name="userMsg" id="t1"> </textarea></span>
+                        </div>
+                       <div>
+                            <label class="fa-btn btn-1 btn-1e"><input type="button" id="btn1" value="submit us"></label>
+                      </div>
+				    </div>
+  			</div>
+            <script src="/js/ajax.js"></script>
+            <script>
+                var oUser=document.getElementById('userName');
+                var oEmail=document.getElementById('email');
+                var oT=document.getElementById('t1');
+                var oBtn=document.getElementById('btn1');
+
+                //检测
+
+                oBtn.onclick=function(){
+                    //检测
+                    ajax({
+                        url:'/contact/add',
+                        type:'post',
+                        data:{
+                            name:oUser.value,
+                            email:oEmail.value,
+                            subject:oT.value
+                        },
+                        success:function(str){
+                            alert(str);
+                        }
+                    });
+                };
+            </script>
+  			<div class="clearfix"></div>		
+	</div> 
+</div>
+</div>
+<%include footer.html%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+{
+  "name": "node-express-demo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Gao",
+  "license": "MIT",
+  "dependencies": {
+    "consolidate": "^0.14.1",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-alpha.1",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "multer": "^1.2.0",
+    "formidable": "^1.0.17",
+    "mysql": "^2.11.1"
+  },
+  "devDependencies": {},
+  "description": "node-express-demo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaofei019/node-express-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gaofei019/node-express-demo/issues"
+  },
+  "homepage": "https://github.com/gaofei019/node-express-demo#readme"
+}

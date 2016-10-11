@@ -1,0 +1,38 @@
+<%include header.html%>
+<div class="main_bg"><!-- start main -->
+	<div class="container">
+		<div class="technology row">
+			<h2>our technologies</h2>
+
+            <%for(var i=0; i<data.length; i++){%>
+            <div class="technology_list">
+				<h4><%=i+1%>. <%=data[i].t%></h4>
+				<div class="col-md-10 tech_para">
+					<p class="para"><%=data[i].d%></p>
+				</div>
+				<div class="col-md-2 images_1_of_4 bg1 pull-right">
+					<span class="bg"><i class="fa fa-files-o"></i> </span>
+				</div>
+				<div class="clearfix"></div>
+				<div class="read_more">
+					<a href="/single-page/<%=data[i].id%>" class="fa-btn btn-1 btn-1e">更多...</a>
+				</div>	
+			</div>
+            <%}%>
+
+			<ul class="pagination">
+                <li><a href="/technology/<%=currentPage-1<1?1:currentPage-1%>">&laquo;</a></li>
+                <%for(var i=0; i<count; i++){%>
+                <li class="<%=currentPage==i+1?'active':''%>"><a href="/technology/<%=i+1%>"><%=i+1%></a></li>
+                <%}%>
+
+                <li><a href="/technology/<%=currentPage-0+1%>">&raquo;</a></li>
+			</ul>
+			<div class="alert alert-warning alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+			</div>
+		</div>
+	</div>
+</div>
+<%include footer.html%>
