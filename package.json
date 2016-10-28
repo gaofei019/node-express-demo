@@ -1,6 +1,6 @@
 {
   "name": "node-express-demo",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,12 @@
     "formidable": "^1.0.17",
     "mysql": "^2.11.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cleancss": "^0.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
   "description": "node-express-demo",
   "repository": {
     "type": "git",
