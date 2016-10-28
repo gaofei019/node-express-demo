@@ -7,6 +7,7 @@ module.exports=router;
 
 router.get('/',function(req,res){
 	res.render('about',{
-		nav_index:3
+		nav_index:3,
+        username:req.session.username
 	});
 });

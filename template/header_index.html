@@ -52,17 +52,28 @@
         });
     </script>
     <!-- //Owl Carousel Assets -->
-    <!----font-Awesome----->
+    <!--font-Awesome-->
     <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
-    <!----font-Awesome----->
+    <!--font-Awesome-->
 </head>
 <body>
 <div class="header_bg">
     <div class="container">
         <div class="row header">
             <div class="logo navbar-left">
-                <h1><a href="index.html">Learner </a></h1>
+                <h1><a href="/">Learner </a></h1>
             </div>
+            <% if(username){ %>
+            <div style="float:left">
+                <%=username %>
+                <a href="/logout">退出</a>
+            </div>
+            <% }else{ %>
+            <div style="float:left">
+                <a href="/login">登录</a>
+                <a href="/reg">注册</a>
+            </div>
+            <% } %>
             <div class="h_search navbar-right">
                 <form>
                     <input type="text" class="text" value="Enter text here" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Enter text here';}">

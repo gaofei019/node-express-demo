@@ -8,7 +8,8 @@ module.exports=router;
 
 router.get('/',function(req,res){
 	res.render('contact',{
-		nav_index:5
+		nav_index:5,
+		username:req.session.username
 	});
 });
 

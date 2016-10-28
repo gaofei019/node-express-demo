@@ -43,7 +43,8 @@ router.get(/^\/\d+|\/$/,function(req,res){
 		res.render('technology',{nav_index:2,
 			data:data,
 			count:count,
-			currentPage:currentPage
+			currentPage:currentPage,
+			username:req.session.username
 		});
 	});
 });

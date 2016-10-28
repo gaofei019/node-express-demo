@@ -35,6 +35,10 @@ app.use('/about',require('./router/about'));
 app.use('/blog',require('./router/blog'));
 app.use('/contact',require('./router/contact'));
 app.use('/single-page',require('./router/single-page'));
+app.use('/login',require('./router/login'));
+app.use('/reg',require('./router/reg'));
+app.use('/logout',require('./router/logout'));
+app.use('/resetpw',require('./router/resetpw'));
 
 //静态资源
 app.use(express.static('static'));

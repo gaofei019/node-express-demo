@@ -6,8 +6,6 @@ var router=express.Router();
 module.exports=router;
 
 router.get('/',function(req,res){
-	res.render('blog',{
-		nav_index:4,
-        username:req.session.username
-	});
+    req.session.username=null;
+	res.redirect('/');
 });

@@ -14,7 +14,8 @@ router.get(/^\/\d+|\/$/,function(req,res){
 	db.query(sql,function(err,data){
 		res.render('single-page',{
 			nav_index:2,
-			dataMsg:data[0]
+			dataMsg:data[0],
+            username:req.session.username
 		});
 	});
 });

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+    <form action="/login" id="loginForm">
+        user:
+        <input type="text" name="username" data-rule-required="true" data-rule-isLegalCharacter="true">
+        <br>
+        pass:
+        <input type="password" name="password" data-rule-required="true" data-rule-isLegalCharacter="true">
+        <br>
+        <input type="submit" value="登录">
+        <div><a href="/resetpw">忘记密码?</a><a href="/reg">注册</a></div>
+    </form>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script>
+        (function(){
+            $(function(){
+                var $regForm=$('#loginForm'),
+                    $submit,
+                    param,url;
+                $regForm.validate({
+                    submitHandler : function() {
+                        $submit = $regForm.find('input[type=submit]');
+                        param = $regForm.serialize();
+                        console.log(param);
+                        url=$regForm.attr('action');
+                        if($submit.attr('data_lock')){
+                            return false;
+                        }
+                        $submit.attr('data_lock',1).addClass('disable');
+                        $.ajax({
+                            url :  url,
+                            type: 'post',
+                            data: param,
+                            dataType:'json',
+                            success: function(r){
+                                if ( r.code == 0 ) {
+                                    alert(r.msg);
+                                    window.location.href=r.data.url;
+                                } else {
+                                    alert(r.msg);
+                                }
+                            },
+                            error: function(){
+                                alert('未知网络错误');
+                            },
+                            complete:function(){
+                                $submit.removeAttr('data_lock').removeClass('disable'); 
+                            }
+                        });
+                        return false;
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

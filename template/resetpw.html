@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+    <form action="/resetpw" id="regForm">
+        user:
+        <input type="text" name="username" data-rule-required="true" data-rule-isLegalCharacter="true">
+        <br>
+        oldpass:
+        <input type="password" name="old_password" data-rule-required="true" data-rule-minlength="6" data-rule-regexPassword="true">
+        <br>
+        newpass:
+        <input type="password" name="new_password" id="pass" data-rule-required="true" data-rule-minlength="6" data-rule-regexPassword="true">
+        <br>
+        re_newpass:
+        <input type="password" name="re_newpassword" data-rule-required="true" data-rule-minlength="6" data-rule-regexPassword="true" data-rule-equalTo="#pass">
+        <br>
+        <input type="submit" value="完成">
+        <div><a href="/login">登录</a></div>
+    </form>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script>
+        (function(){
+            if(jQuery.validator != undefined && jQuery.validator.length > 0) {
+                jQuery.validator.addMethod("isLegalCharacter", function(value, element) {
+                        var regPattern = /^[^\|<>]*$/;
+                        return this.optional(element) || (regPattern.test(value));
+                    }, "有奇怪的字符出现哦~~");
+                jQuery.validator.addMethod("email", function(value, element) {
+                        var regPattern = /^([a-zA-Z0-9\._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+                        return this.optional(element) || (regPattern.test(value));
+                    }, "请输入正确格式的邮箱地址");
+                jQuery.validator.addMethod("regexPassword", function(value, element) {  
+                    return this.optional(element) || /^(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?=.*[A-Za-z]).*$/.test(value);  
+                }, "一个字母，一个数字");
+                jQuery.validator.addMethod("mobile", function(value, element) {  
+                    var regPattern = /^1\d{10}$/;//手机号验证
+                    return this.optional(element) || regPattern.test(value);  
+                }, "请输入正确格式的手机号码");
+                jQuery.validator.addMethod("contact", function(value, element) {  
+                    var regPattern = /^1\d{10}$/,//手机号验证
+                        regPattern2 = /^([a-zA-Z0-9\._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;//邮箱验证
+                    return this.optional(element) || regPattern.test(value) || regPattern2.test(value);  
+                }, "请输入正确格式的手机号码或者邮箱账号");
+                jQuery.validator.addMethod("CN", function(value, element) {  
+                    var regPattern = /^[\u4e00-\u9fa5]+$/;//中文验证
+                    return this.optional(element) || regPattern.test(value);  
+                }, "请输入中文");
+                jQuery.validator.addMethod("idcard", function(value, element) {  
+                    var regPattern = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;//身份证号码验证
+                    return this.optional(element) || regPattern.test(value);  
+                }, "请输入正确格式的身份证号");
+                jQuery.validator.addMethod("edl", function(value, element) {  
+                    var regPattern = /^[a-zA-Z0-9][a-zA-Z0-9_]*$/;//
+                    return this.optional(element) || regPattern.test(value);  
+                }, "只能输入英文、数字、下划线(英文或数字开头)");
+                jQuery.validator.addMethod("telnumber", function(value, element) {  
+                        var regPattern1 = /^1\d{10}$/,//手机号验证
+                            //regPattern2 = /^0\d{2,3}-?\d{7,8}$/;//座机号验证
+                            regPattern2 = /([0-9]{3,4}-)?[0-9]{7,8}/;//座机号验证
+                        return this.optional(element) || regPattern1.test(value) || regPattern2.test(value);  
+                    }, "请输入正确格式的电话号码");
+            }
+            $(function(){
+                var $regForm=$('#regForm'),
+                    $submit,
+                    param,url;
+                $regForm.validate({
+                    submitHandler : function() {
+                        $submit = $regForm.find('input[type=submit]');
+                        param = $regForm.serialize();
+                        url=$regForm.attr('action');
+                        if($submit.attr('data_lock')){
+                            return false;
+                        }
+                        $submit.attr('data_lock',1).addClass('disable');
+                        $.ajax({
+                            url :  url,
+                            type: 'post',
+                            data: param,
+                            dataType:'json',
+                            success: function(r){
+                                if ( r.code == 0 ) {
+                                    alert(r.msg);
+                                    window.location.href=r.data.url;
+                                } else {
+                                    alert(r.msg);
+                                }
+                            },
+                            error: function(){
+                                alert('未知网络错误！');
+                            },
+                            complete:function(){
+                                $submit.removeAttr('data_lock').removeClass('disable'); 
+                            }
+                        });
+                        return false;
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

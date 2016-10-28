@@ -16,17 +16,28 @@
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <!----font-Awesome----->
-    <link rel="stylesheet" href="/fonts/css/font-awesome.min.css">
-    <!----font-Awesome----->
+    <!--font-Awesome-->
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+    <!--font-Awesome-->
 </head>
 <body>
 <div class="header_bg1">
     <div class="container">
         <div class="row header">
             <div class="logo navbar-left">
-                <h1><a href="index.html">Learner </a></h1>
+                <h1><a href="/">Learner</a></h1>
             </div>
+            <% if(username){ %>
+            <div style="float:left">
+                <%=username %>
+                <a href="/logout">退出</a>
+            </div>
+            <% }else{ %>
+            <div style="float:left">
+                <a href="/login">登录</a>
+                <a href="/reg">注册</a>
+            </div>
+            <% } %>
             <div class="h_search navbar-right">
                 <form action="/technology/search">
                     <input name="t1" type="text" class="text" placeholder="请输入关键字">
